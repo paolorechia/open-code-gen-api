@@ -1,4 +1,6 @@
-from open_code_gen_api.open_code_gen_model import cli
+from open_code_gen_api import cli
 
-def test_cli():
-    assert cli.hello_cli() == "hello-cli"
+# Test that the model runs
+def test_cli(caplog):
+    assert "hello world" in cli.cli("hello world")
+
