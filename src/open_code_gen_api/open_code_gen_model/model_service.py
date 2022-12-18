@@ -1,8 +1,10 @@
 from open_code_gen_api.logger import logger
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+
 class CodeGenModel:
     pass
+
 
 class SalesforceCodeGen(CodeGenModel):
     def _tokenize(self, input: str):
@@ -19,12 +21,15 @@ class SalesforceCodeGen(CodeGenModel):
         logger.info("Decoding...")
         return self._decode(sample)
 
+
 class SalesforceCodeGen350M(SalesforceCodeGen):
     def __init__(self) -> None:
         super().__init__()
         logger.info("Loading model...")
         self.tokenizer = AutoTokenizer.from_pretrained("Salesforce/codegen-350M-mono")
-        self.model = AutoModelForCausalLM.from_pretrained("Salesforce/codegen-350M-mono")
+        self.model = AutoModelForCausalLM.from_pretrained(
+            "Salesforce/codegen-350M-mono"
+        )
 
 
 class SalesforceCodeGen2B(SalesforceCodeGen):
@@ -33,4 +38,3 @@ class SalesforceCodeGen2B(SalesforceCodeGen):
         logger.info("Loading model...")
         self.tokenizer = AutoTokenizer.from_pretrained("Salesforce/codegen-2B-mono")
         self.model = AutoModelForCausalLM.from_pretrained("Salesforce/codegen-2B-mono")
-        

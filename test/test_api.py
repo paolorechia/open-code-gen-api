@@ -7,10 +7,13 @@ client = TestClient(app)
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {'app': 'Open Code Gen API',
-          'help': 'Call POST /prompt to request a response from the model',
-          'model': 'SalesforceCodeGen350M',
-          'version': '0.1'}
+    assert response.json() == {
+        "app": "Open Code Gen API",
+        "help": "Call POST /prompt to request a response from the model",
+        "model": "SalesforceCodeGen350M",
+        "version": "0.1",
+    }
+
 
 def test_prompt():
     response = client.post("/prompt", json={"prompt_text": "test"})
