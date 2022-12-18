@@ -2,15 +2,19 @@
 At the moment, fully based in the HuggingFace Transformers library.
 """
 import os
+
 from transformers import AutoModelForCausalLM, AutoTokenizer  # type: ignore
 
 from open_code_gen_api.logger import logger
 
-# pylint: disable=too-few-public-methods
+# pylint: disable=too-few-public-methods, super-init-not-called
 
 models_root_dir = os.environ["OPEN_CODE_GEN_API_MODEL_PATH"]
 
+
 class ModelsPathMapping:
+    """Available models."""
+
     SALESFORCE_350M_MONO = "Salesforce/codegen-350M-mono"
     SALESFORCE_2B_MONO = "Salesforce/codegen-2B-mono"
 
@@ -20,7 +24,7 @@ class CodeGenModel:
 
     MAX_LENGTH = 2048
 
-    def infer(self, input_: str) -> str:
+    def infer(self, input_: str, max_length: int) -> str:
         """Abstract infer method, takes a text prompt and returns the model response."""
         raise NotImplementedError("Abstract method")
 
@@ -62,14 +66,23 @@ class SalesforceCodeGen350M(SalesforceCodeGen):
 
     def __init__(self) -> None:
         logger.info("Loading model...")
-        self.tokenizer = AutoTokenizer.from_pretrained(ModelsPathMapping.SALESFORCE_350M_MONO, cache_dir=models_root_dir)
-        self.model = AutoModelForCausalLM.from_pretrained(ModelsPathMapping.SALESFORCE_350M_MONO, cache_dir=models_root_dir)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            ModelsPathMapping.SALESFORCE_350M_MONO, cache_dir=models_root_dir
+        )
+        self.model = AutoModelForCausalLM.from_pretrained(
+            ModelsPathMapping.SALESFORCE_350M_MONO, cache_dir=models_root_dir
+        )
 
 
 class SalesforceCodeGen2B(SalesforceCodeGen):
     """Loads the 2B parameters mono (Python only) model."""
 
     def __init__(self) -> None:
+        # pylint disable="super-init-not-called"
         logger.info("Loading model...")
-        self.tokenizer = AutoTokenizer.from_pretrained(ModelsPathMapping.SALESFORCE_2B_MONO, cache_dir=models_root_dir)
-        self.model = AutoModelForCausalLM.from_pretrained(ModelsPathMapping.SALESFORCE_2B_MONO, cache_dir=models_root_dir)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            ModelsPathMapping.SALESFORCE_2B_MONO, cache_dir=models_root_dir
+        )
+        self.model = AutoModelForCausalLM.from_pretrained(
+            ModelsPathMapping.SALESFORCE_2B_MONO, cache_dir=models_root_dir
+        )
