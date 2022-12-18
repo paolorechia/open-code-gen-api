@@ -25,5 +25,5 @@ async def root():
 @app.post("/prompt")
 async def prompt_handler(request: request_types.PromptRequest):
     """Prompt handler: runs a prompt through the mdoel"""
-    result = model.infer(request.prompt_text)
+    result = model.infer(request.prompt_text, request.max_response_length)
     return {"model_response": result}

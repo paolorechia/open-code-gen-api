@@ -7,7 +7,7 @@ def cli(prompt: str):
     """Loads the model, passes a prompt through it and returns the reuslt."""
     logger.info("CLI called with prompt: %s", prompt)
     model = SalesforceCodeGen350M()
-    model_result = model.infer(prompt)
+    model_result = model.infer(prompt, 128)
     logger.info("Result: %s", model_result)
     return model_result
 
