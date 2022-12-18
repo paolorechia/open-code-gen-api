@@ -3,8 +3,20 @@ from fastapi import FastAPI
 
 from open_code_gen_api import request_types
 from open_code_gen_api.open_code_gen_model import model_service
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "*"
+]
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 VERSION = "0.1"
 
 ModelClass = model_service.SalesforceCodeGen350M
