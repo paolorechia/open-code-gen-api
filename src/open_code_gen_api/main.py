@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-VERSION = "0.1"
+VERSION = "0.1.1"
 
 ModelClass = model_service.SalesforceCodeGen350M
 model = ModelClass()
