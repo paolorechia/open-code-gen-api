@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from open_code_gen_api.open_code_gen_model import model_service
+
 from open_code_gen_api import request_types
+from open_code_gen_api.open_code_gen_model import model_service
 
 app = FastAPI()
 version = "0.1"

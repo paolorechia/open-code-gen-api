@@ -1,5 +1,6 @@
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
 from open_code_gen_api.logger import logger
-from transformers import AutoTokenizer, AutoModelForCausalLM
 
 
 class CodeGenModel:

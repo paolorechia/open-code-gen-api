@@ -12,6 +12,7 @@ def cli(prompt: str):
 
 if __name__ == "__main__":
     import sys
+
     from open_code_gen_api import cli
 
     if len(sys.argv) < 2:

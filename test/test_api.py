@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+
 from open_code_gen_api.main import app
 
 client = TestClient(app)
