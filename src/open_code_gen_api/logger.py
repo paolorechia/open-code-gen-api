@@ -1,3 +1,4 @@
+"""Defines basic logging behavior. At the moment, does not do much"""
 import logging
 import sys
 

@@ -1,6 +1,8 @@
+# pylint: disable=missing-module-docstring, import-error, missing-function-docstring
+
 from fastapi.testclient import TestClient
 
-from open_code_gen_api.main import app
+from open_code_gen_api.main import app  # type: ignore
 
 client = TestClient(app)
 
