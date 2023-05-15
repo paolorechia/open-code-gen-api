@@ -1,5 +1,5 @@
 torch
-transformers>=4.21
+transformers==4.21
 fastapi
 httpx
 uvicorn[standard]
